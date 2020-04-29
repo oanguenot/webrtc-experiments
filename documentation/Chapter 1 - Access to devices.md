@@ -1,6 +1,6 @@
-# Access to devices
+# Chapter 1: Access to devices
 
-WebRTC provides JavaScript API to list and to select the devices to use for your calls.
+WebRTC provides some JavaScript API to access your microphones and cameras in order to select the right devices you want to use for your calls. This chapter describes these API and explains the notable differences between browsers.
 
 ## Introduction
 
