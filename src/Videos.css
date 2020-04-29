@@ -1,0 +1,20 @@
+.Video-local {
+    width: 360px;
+    height: 280px;
+    margin: 0;
+}
+
+.Video-id {
+    font-size: small;
+    font-weight: bold;
+    margin-top: 6px;
+}
+
+.Video-name {
+    margin: 6px;
+}
+
+.Video-area {
+    text-align: center;
+    padding: 10px;
+}

@@ -1,0 +1,15 @@
+ul {
+    list-style: none;
+}
+
+.Device-label {
+    font-size: small;
+    font-weight: 300;
+    margin-right: 10px;
+}
+
+.Device-active {
+    font-size: small;
+    font-weight: bold;
+    margin-left: 10px;
+}
