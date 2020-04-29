@@ -12,20 +12,14 @@ const Videos = (props) => {
     useEffect(() => {
         if (stream) {
             videoElt.current.srcObject = stream;
-            window.stream = stream;
-            const track = stream.getVideoTracks()[0];
-            const constraints = track.getConstraints();
-            console.log("Result constraints: " + JSON.stringify(constraints));
         }
     }, [stream]);
 
     useEffect(() => {
-        console.log("[videos] effect update camera");
         setCamera(props.camera);
     }, [props.camera]);
 
     useEffect(() => {
-        console.log("[videos] effect update microphone");
         setMicrophone(props.microphone);
     }, [props.microphone]);
 
@@ -55,7 +49,6 @@ const Videos = (props) => {
         }
 
         const constraints = getConstraints();
-        console.log("Asked constraints: " + JSON.stringify(constraints));
 
         const newStream = await getUserMedia(constraints);
         setStream(newStream);

@@ -11,12 +11,10 @@ const App = () => {
     const [selectedCamera, setCamera] = useState({ label: "default", deviceId: null });
 
     const onMicrophoneChanged = (device) => {
-        console.log("selectedMicrophone -> " + device.label, device.deviceId);
         setMicrophone(device);
     };
 
     const onCameraChanged = (device) => {
-        console.log("selectedCamera -> " + device.label, device.deviceId);
         setCamera(device);
     };
 

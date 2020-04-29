@@ -10,11 +10,5 @@ export const enumerate = async () => {
 
 export const getUserMedia = async (constraints) => {
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
-    console.log("Stream", stream);
     return stream;
 };
-
-// export const enumerate = async () => {
-//     await getUserMedia(constraints);
-//     return await enumerateDevices();
-// };
