@@ -15,8 +15,8 @@ Without having authorizing the application to access your devices, you don't hav
 For example, on Chrome, when executing the following code:
 
 ```js
-export const enumerateDevices = async () => {
-    await navigator.mediaDevices.enumerateDevices().then((devices) => {
+export const enumerateDevices = () => {
+    navigator.mediaDevices.enumerateDevices().then((devices) => {
         console.log(devices);
     });
 };
@@ -49,37 +49,36 @@ MediaDeviceInfo {
 }
 ```
 
-Two things to notice:
+The important things to notice are that:
 
 -   Some information are missing: `label` and `deviceId`. Without the `deviceId`, you can't use the device in your call.
 
--   Only a part of the devices found could be accessible (depending on the browser).
+-   You can get access the media (stream) from these devices.
+
+So, the only way to have access is to give the appropriate authorization.
 
 ## Complete access when authorized
 
-Your application needs to request the access to the microphone and camera by using the API `navigator.mediaDevices.getUserMedia` such as in that example
+Your application needs to request the access to the microphone and camera by using the API `navigator.mediaDevices.getUserMedia`. This is done by asking the user and this process can be automated in your application.
+
+The following sample is the minimum of code requested for asking the access to the microphone and the camera.
 
 ```js
-export const getUserMedia = async () => {
+export const getUserMedia = () => {
     const constraints = {
         audio: true,
         video: true,
     };
 
-    await navigator.mediaDevices.getUserMedia(constraints);
+    navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+        console.log("access granted to your camera and microphone");
+    });
 };
 ```
+
+More information on that API are described in the [Chapter 2: Choosing the devices](choosing%20the%20devices.md).
 
 Now, if you call the two previous functions described, such as in the following, you get the complete list and information.
-
-```js
-export const getandenumerate = async () => {
-    await getUserMedia();
-    await enumerateDevices();
-};
-```
-
-Once called, you receive the following
 
 ```js
 InputDeviceInfo {
@@ -108,7 +107,7 @@ Now, your application have access and is able to use these devices in a call.
 
 ## MediaDeviceInfo content
 
-Each device listed contains at this time of writing the following information that help you informing the user about the current device selected:
+Each device listed contains the following information that help you informing the user about the available devices:
 
 -   `deviceId`: Identifier of the device. This identifier persist on each browser. For example, you can save it in your localstorage and select it automatically when the user visits again your application. Be careful, this identifier is different on each navigator.
 
@@ -141,6 +140,10 @@ Here are some notable differences between browsers seen recently
 | **Safari**<br>(13.1 / Mac) | MediaDeviceInfo                        |  Yes  | **No** | `groupId` seems not to be implemented. Always equals to an empty string.                                                                                                                                                                                                        |
 
 Note: Tests done on **Microsoft Edge** (81 / Mac) shown the same results as for Chrome (both based on Chromium)
+
+## Sample
+
+You can have a look to the file `Devices.js` and the `Videos.js` to see in live how to use these API.
 
 ---
 
