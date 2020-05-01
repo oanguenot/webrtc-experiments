@@ -1,6 +1,6 @@
 # The story behind WebRTC
 
-This document is my personal understanding of how the WebrRTC technology has emerged from browser. I'm not from Google but the main information I found is related to Google and Chrome.
+This document is my personal understanding of how the WebrRTC technology has emerged from browser. I'm not from Google but the main information I found is related to Google and Chrome because they have a clear WebRTC release notes.
 
 ## A long time ago
 
@@ -14,7 +14,7 @@ WebRTC premises appeared at the beginning of the century. Microsoft by bying Sky
 | Avr, 2007 |  People  | [Serge Lachapelle](https://twitter.com/slac) hired by Google                                                                                                                                                                                                                   |
 | Sep, 2008 |  Media   | First release of VP8 by On2                                                                                                                                                                                                                                                    |
 | Nov, 2008 |  People  | Serge Lachapelle’s team (included Justin Uberti) added voice and video chat in Gmail using XMPP, H264/SVC                                                                                                                                                                      |
-| Sept 2009 |  HTML 5  | Chrome 3 adds the support of <Audio> and <Video>                                                                                                                                                                                                                               |
+| Sep, 2009 |  HTML 5  | Chrome 3 adds the support of <Audio> and <Video>                                                                                                                                                                                                                               |
 | Feb, 2010 |  Media   | Google buys On2 for 124,6 M dollars (Vpx video codecs)                                                                                                                                                                                                                         |
 | May, 2010 |  HTML5   | Chrome 5 adds the support of the HTML5 WebSocket API + Adobe Flash player integration                                                                                                                                                                                          |
 | May, 2010 |  Media   | Google buys Global IP Solutions for 68,2M dollars (GIPS has developed real-time voice and video processing software for IP networks and the narrowband iLBC and wideband iSAC speech codecs).<br> Acquisition leaded by Serge Lachapelle. Lachapelle starts working on WebRTC. |
@@ -116,6 +116,13 @@ As for browsers at the origin for JavaScript and HTML, WebRTC developers want AP
 | Dec, 2018 |  WebRTC  | Chrome 72 enables Unified plan by default and the Screen Capture API is now officially released                                                                              |
 | Mar, 2019 |  WebRTC  | Chrome 74 adds official support of simulcast by using addTransciver API (in replacement of SDK munging)                                                                      |
 | Jan, 2020 |  WebRTC  | Chrome 80 announces the deprecating binary mobile libraries                                                                                                                  |
+
+## Links
+
+-   [Chrome release notes](https://github.com/webrtc/webrtc-org/blob/gh-pages/release-notes/index.md)
+-   [Firefox release notes](https://wiki.mozilla.org/Media/WebRTC/ReleaseNotes)
+-   [WebKit release notes](https://webkit.org/blog/)
+-   [Safari release notes](https://developer.apple.com/safari/technology-preview/release-notes/)
 
 ---
 
