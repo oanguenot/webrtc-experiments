@@ -25,7 +25,7 @@ For providing the best experience on mobile, the best is that your application s
 | Mobile                       | Browsers compliant      | Browsers not compliant                                                                 |
 | ---------------------------- | ----------------------- | -------------------------------------------------------------------------------------- |
 | **Apple**<br>Ipad, Iphone    | **Safari**              | Chrome, Firefox<br>[Bug](https://bugs.chromium.org/p/chromium/issues/detail?id=752458) |
-| **Android**<br>Phone, Tablet | **Chrome**, **Firefox** |                                                                                        | Some specific mobile vendor browsers |
+| **Android**<br>Phone, Tablet | **Chrome**, **Firefox** | Some specific mobile vendor browsers                                                   |
 
 ## Streams and Tracks
 

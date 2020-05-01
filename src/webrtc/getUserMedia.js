@@ -3,6 +3,7 @@ export const enumerate = async () => {
 
     await navigator.mediaDevices.enumerateDevices().then((devicesFound) => {
         devices = devicesFound;
+        window.devices = devices;
     });
 
     return devices;
