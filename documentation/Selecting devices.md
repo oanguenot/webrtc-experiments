@@ -102,3 +102,7 @@ This strategy is complicated for several reasons:
 -   Internal devices used are not identified from others
 
 -   `groupId` is not yet implemented in Safari (13.1)
+
+---
+
+Last edition May, 01th 2020
