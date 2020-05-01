@@ -38,8 +38,8 @@ yarn start
 
 All the documentation is divided into different chapters:
 
--   [Introduction: The story behind WebRTC](./documentation/Story%20behind%webrtc.md)
--   [Chapter 1: Speaking WebRTC](./documentation/speaking%20webrtc.md)
+-   [Introduction: The story behind WebRTC](./documentation/Story%20behind%20webrtc.md)
+-   [Chapter 1: Speaking WebRTC](./documentation/Speaking%20webrtc.md)
 -   [Chapter 2: Access to the devices](./documentation/Access%20to%20devices.md)
 -   [Chapter 3: Selecting a camera and a microphone](./documentation/Selecting%20devices.md)
 -   In progress...
