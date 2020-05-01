@@ -1,4 +1,4 @@
-# Chapter 1: Access to devices
+# Access to devices
 
 WebRTC provides some JavaScript API to access your microphones and cameras in order to select the right devices you want to use for your calls. This chapter describes these API and explains the notable differences between browsers.
 
@@ -139,7 +139,7 @@ Here are some notable differences between browsers seen recently
 | **Firefox**<br>(75 / Mac)  | MediaDeviceInfo                        |  Yes  | **No** | a) Output devices can be listed by changing the configuration using `about:config`. See that [document](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices) for more information.<br/><br/>b) deviceId is accessible without asking for permissions |
 | **Safari**<br>(13.1 / Mac) | MediaDeviceInfo                        |  Yes  | **No** | `groupId` seems not to be implemented. Always equals to an empty string.                                                                                                                                                                                                        |
 
-Note: Tests done on **Microsoft Edge** (81 / Mac) shown the same results as for Chrome (both based on Chromium)
+Note: Tests done on **Microsoft Edge** (M81 / Mac) shown the same results as for Chrome (both based on Chromium)
 
 ## Sample
 

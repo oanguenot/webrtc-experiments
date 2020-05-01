@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 
-//import "webrtc-adapter";
+import "webrtc-adapter";
 
 import Videos from "./Videos";
 import Devices from "./Devices";
