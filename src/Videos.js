@@ -49,8 +49,8 @@ const Videos = (props) => {
         }
 
         const constraints = getConstraints();
-
         const newStream = await getUserMedia(constraints);
+        window.stream = newStream;
         setStream(newStream);
     };
 
