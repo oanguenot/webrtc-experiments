@@ -6,7 +6,7 @@ This document is my personal understanding of how the WebrRTC technology has eme
 
 WebRTC premises appeared at the beginning of the century. Microsoft by bying Skype, Google for GTalk and Firefox by working on codecs. All are preparing their weapons. But 2 clans emerges :pure browsers vendors with Firefox and Chrome and Microsoft with 2 WebRTC specifications proposals.
 
-|   Date    | Category | Interesting fact                                                                                                                                                                                                                                                               |
+|   Date    | Category | Interesting facts                                                                                                                                                                                                                                                              |
 | :-------: | :------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Aug, 2003 |  Others  | First public beta version of Skype                                                                                                                                                                                                                                             |
 | Sep, 2005 |  Others  | eBay acquires Skype for US\$2.5 billion in up-front cash and eBay stock                                                                                                                                                                                                        |
@@ -48,7 +48,7 @@ WebRTC premises appeared at the beginning of the century. Microsoft by bying Sky
 
 Microsoft is still isolated with its own implementation of WebRTC (Orca). For Chrome and Firefox, and codecs providers, a battle is engaged to decide on the mandatory codecs to support on WebRTC end point (browsers). At the end, this is a status-quo: H264 and VP8 needs to be implemented for the video codecs and G711 and Opus for the audio codecs. Browsers are free to propose additionals codecs.
 
-|   Date    | Category | Interesting fact                                                                                                                                                                     |
+|   Date    | Category | Interesting facts                                                                                                                                                                    |
 | :-------: | :------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Feb, 2013 |  WebRTC  | Chrome 28 adds the support for TURN TCP                                                                                                                                              |
 | Jun, 2013 |  WebRTC  | Firefox enables WebRTC by default                                                                                                                                                    |
@@ -103,7 +103,7 @@ Microsoft is still isolated with its own implementation of WebRTC (Orca). For Ch
 
 As for browsers at the origin for JavaScript and HTML, WebRTC developers want API that are homogenous against browsers. Hopefully, browsers wendors have listened and little by little, the specifications are implemented in the same maner in all browsers... But there are still differences today! Other victory, WebRTC finally landed in Safari!
 
-|   Date    | Category | Interesting fact                                                                                                                                                             |
+|   Date    | Category | Interesting facts                                                                                                                                                            |
 | :-------: | :------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Feb, 2017 |  Media   | Chrome 57 on Mac uses hardware encoding/decoding of H264 when the device hardware supports it as well as encoding by default on Chrome for Android                           |
 | Apr, 2017 |  WebRTC  | Chrome 58 enables the use of proxies that require explicit credentials.                                                                                                      |
