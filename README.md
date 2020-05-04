@@ -38,7 +38,7 @@ yarn start
 
 All the documentation is divided into different chapters:
 
--   [Introduction](Introduction.md)
+-   [Introduction](./documentation/Introduction.md)
 -   [Chapter 1: The story behind WebRTC](./documentation/Story%20behind%20webrtc.md)
 -   [Chapter 2: Speaking WebRTC](./documentation/Speaking%20webrtc.md)
 -   [Chapter 3: Access to the devices](./documentation/Access%20to%20devices.md)
