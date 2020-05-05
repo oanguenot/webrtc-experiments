@@ -12,7 +12,7 @@ All the documentation is divided into different chapters:
 
 -   [Introduction](./documentation/Introduction.md)
 -   [Chapter 1: The story behind WebRTC](./documentation/Story%20behind%20webrtc.md)
--   [Chapter 2: Integrate WebRTC in your application](./documentation/Integrating%20%20WebRTC.md)
+-   [Chapter 2: Integrate WebRTC in your application](./documentation/Integrating%20webRTC.md)
 -   [Chapter 3: Speaking WebRTC](./documentation/Speaking%20webrtc.md)
 -   [Chapter 4: Access to the devices](./documentation/Access%20to%20devices.md)
 -   [Chapter 5: Selecting a camera and a microphone](./documentation/Selecting%20devices.md)
