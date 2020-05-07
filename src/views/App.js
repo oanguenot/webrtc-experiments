@@ -1,8 +1,9 @@
-import React, { useReducer } from "react";
+import React, { useReducer, createContext } from "react";
 import "./App.css";
 
 import Local from "./Local";
 import MaterialsList from "./MaterialsList";
+import MaterialsContext from "../contexts/materialsContext";
 
 import { materialsReducer, initialMaterialsState } from "../reducers/materialsReducer";
 
@@ -12,8 +13,10 @@ const App = () => {
     return (
         <div className="App">
             <header className="App-header">
-                <Local materials={materials} />
-                <MaterialsList dispatch={dispatch} materials={materials} />
+                <MaterialsContext.Provider value={materials}>
+                    <Local />
+                    <MaterialsList dispatch={dispatch} />
+                </MaterialsContext.Provider>
             </header>
         </div>
     );

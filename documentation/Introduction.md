@@ -16,11 +16,11 @@ Even if now, WebRTC has been largely adopted by browsers and platforms, in the p
 
 ## Objectives
 
-The objectives of that documentation is multiple.
+The objectives of that documentation are multiple.
 
-First, I want to share my knowledge and continue to progress by discovering some "hidden parts" in order to develop the best applications I can. And secondly, I want to share my personal advices because often a technical documentation gives you only an "academic" training or an overview but never a return of experiences. I want to share some of them to let you understand the bad and complicated points.
+First, I want to share my knowledge and continue to progress by discovering some "hidden parts" in order to develop the best applications I can. And secondly, I want to share my personal advices because often a technical documentation gives you only an "academic" training or an overview but never a return of experiences. I want to share some of them to let you understand the bad and complicated points I overcomed.
 
-So, don't be surprise to find sections called _Recommendations_ . This is where I share my own experience. But remember, this is only some advices. Sometimes, they will match with your cases but sometimes not. But in all cases, I hope that they will help you understanding how to do.
+So, don't be surprise to find sections called _Recommendation_ . This is where I share my own experience. But remember, this is only some advices. Sometimes, they will match with your cases but sometimes not. But in all cases, I hope that they will help you understanding how to do.
 
 In fact, I would like to write the **WebRTC: the good parts** :-)
 

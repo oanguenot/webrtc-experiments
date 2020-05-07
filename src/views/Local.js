@@ -1,9 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import "./Local.css";
+
+import MaterialsContext from "../contexts/materialsContext";
 
 import { getUserMedia } from "../webrtc/getUserMedia";
 
-const Local = ({ materials }) => {
+const Local = () => {
+    const materials = useContext(MaterialsContext);
+
     const [stream, setStream] = useState();
     const videoElt = useRef();
 

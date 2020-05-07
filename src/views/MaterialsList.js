@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import MaterialsContext from "../contexts/materialsContext";
 
 import { enumerate, getFirstMicrophone, getFirstCamera, filterByMicrophone, filterByCamera } from "../webrtc/Materials";
 
@@ -26,7 +27,9 @@ const MaterialItem = (props) => {
     );
 };
 
-const MaterialsList = ({ dispatch, materials }) => {
+const MaterialsList = ({ dispatch }) => {
+    const materials = useContext(MaterialsContext);
+
     const isSelectedMicrophone = (device) => {
         return materials.microphone && materials.microphone.id === device.id;
     };
