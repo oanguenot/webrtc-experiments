@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { getUserMedia } from "./webrtc/getUserMedia";
+import "./Local.css";
 
-import "./Videos.css";
+import { getUserMedia } from "../webrtc/getUserMedia";
 
-const Videos = (props) => {
-    const [camera, setCamera] = useState(props.camera);
-    const [microphone, setMicrophone] = useState(props.microphone);
+const Local = ({ dispatch, materials }) => {
     const [stream, setStream] = useState();
     const videoElt = useRef();
 
@@ -16,23 +14,19 @@ const Videos = (props) => {
     }, [stream]);
 
     useEffect(() => {
-        setCamera(props.camera);
-    }, [props.camera]);
-
-    useEffect(() => {
-        setMicrophone(props.microphone);
-    }, [props.microphone]);
-
-    useEffect(() => {
         requestMedia();
-    }, [microphone, camera]);
+    }, [materials.camera, materials.microphone]);
 
     const getConstraints = () => {
         const audioConstraints =
-            microphone && microphone.deviceId ? { deviceId: { exact: microphone.deviceId } } : true;
+            materials.microphone && materials.microphone.id ? { deviceId: { exact: materials.microphone.id } } : true;
         const videoConstraints =
-            camera && camera.deviceId
-                ? { deviceId: { exact: camera.deviceId }, width: { exact: 640 }, height: { exact: 480 } }
+            materials.camera && materials.camera.id
+                ? {
+                      deviceId: { exact: materials.camera.id },
+                      width: { exact: 640 },
+                      height: { exact: 480 },
+                  }
                 : true;
 
         return {
@@ -50,7 +44,7 @@ const Videos = (props) => {
 
         const constraints = getConstraints();
         const newStream = await getUserMedia(constraints);
-        window.stream = newStream;
+
         setStream(newStream);
     };
 
@@ -83,4 +77,4 @@ const Videos = (props) => {
     );
 };
 
-export default Videos;
+export default Local;
