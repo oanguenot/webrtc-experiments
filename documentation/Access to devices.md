@@ -59,9 +59,13 @@ So, the only way to have access is to give the appropriate authorization.
 
 ## Complete access when authorized
 
-Your application needs to request the access to the microphone and camera by using the API `navigator.mediaDevices.getUserMedia`. This is done by asking the user and this process can be automated in your application.
+Your application needs to request the access to the microphone and camera by using the API `navigator.mediaDevices.getUserMedia`. This is done by asking the user.
 
-The following sample is the minimum of code requested for asking the access to the microphone and the camera.
+You need to request an access for the input audio device (microphone) as well as for the input video device (video). If you only ask for the input audio device, you will not be able to send your video to your recipient.
+
+This information are called the **constraints**.
+
+The following sample show how to request the access to the microphone and the camera using the minimum constraints.
 
 ```js
 export const getUserMedia = () => {
@@ -75,8 +79,6 @@ export const getUserMedia = () => {
     });
 };
 ```
-
-More information on that API are described in the [Chapter 2: Choosing the devices](choosing%20the%20devices.md).
 
 Now, if you call the two previous functions described, such as in the following, you get the complete list and information.
 
@@ -104,6 +106,8 @@ MediaDeviceInfo {
 ```
 
 Now, your application have access and is able to use these devices in a call.
+
+_Recommendation_: As for mobile applications, it is a good practice for asking permissions when the application has started because this will help you to detect potential issue and inform the user before he tries to make a call.
 
 ## MediaDeviceInfo content
 

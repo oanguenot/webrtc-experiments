@@ -1,4 +1,4 @@
-# Integrating WebRTC in your application
+# Integrate WebRTC in your application
 
 I seen a lot of applications in my life. I'm not a great software architect but I think I succeeded to put the minimum viable architecture in the applications I developed so I tried to share some advices here to ease your WebRTC integration.
 
@@ -43,7 +43,7 @@ const getVideoTrack = (stream) => {
 
 Having some **high level** will help you simplifying your views codebase. All the view needs to know is that for displaying a video, the view should access the video track. that all. How to access the video track is not the problem of the view, this is the problem of the WebRTC module because the implementation is deeply linked to the WebRTC and perhaps not the same on all browsers.
 
-_Recommendations_: The advice I try to keep in mind is to say "My views have no idea of what WebRTC is and should call all the WebRTC stuff from outside". So, put away from the view all WebRTC direct call to APIs and all the events subscriptions.
+_Recommendation_: The advice I try to keep in mind is to say "My views have no idea of what WebRTC is and should call all the WebRTC stuff from outside". So, put away from the view all WebRTC direct call to APIs and all the events subscriptions.
 
 ## WebRTC-Adapter
 
@@ -84,6 +84,8 @@ Debugging WebRTC is not so easy too. Because you will have to debug both the **s
 On the **signaling** part, you should find all the messages exchanged between peers that can help you understanding what happened. On that part, you can log the messages. But you need the WebRTC knowledge to understand the content.
 
 On the **media** part, a first step of understanding is accessible just by the absence of the media. If you don't see the recipient or don't hear him, you know that you have an issue... More concretely, using Chrome you have access to a [Chrome WebRTC internals](chrome://webrtc-internals/), the same for Firefox with the [about:WebRTC](about:webrtc). I'm not aware of a such tool for Safari at this time of writing. These tools give you a lot of information regarding the establishment of the media session and the session itself.
+
+Additional logging methods can be put in place with Chrome on different platforms by following the guide [WebRTC Logging](http://webrtc.github.io/webrtc-org/native-code/logging/). The same for Firefox in that guide [Media/WebRTC/Logging](https://wiki.mozilla.org/Media/WebRTC/Logging).
 
 If you're more than a Web developer, you can use a network packet analysis tool such as **Wireshark**. And if you have deployed your own TURN server, such as **Coturn**, you can check the associated logs if there is trouble when establishing the session.
 

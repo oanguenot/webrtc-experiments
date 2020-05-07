@@ -45,6 +45,8 @@ For providing the best experience on mobile, the best is that your application s
 | **Apple**<br>Ipad, Iphone    | **Safari**              | Chrome, Firefox<br>[Bug](https://bugs.chromium.org/p/chromium/issues/detail?id=752458) |
 | **Android**<br>Phone, Tablet | **Chrome**, **Firefox** | Some specific mobile vendor browsers                                                   |
 
+_Recommendation_: Don't forget to check the navigator and inform the user when detected a not compliant browser.
+
 ## Streams and Tracks
 
 When acquiring the audio and video from your devices using the API `getUserMedia`, your application receives a `MediaStream` object. Often, we call it a **stream**.
