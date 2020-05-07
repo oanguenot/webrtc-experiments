@@ -12,7 +12,7 @@ const App = () => {
     return (
         <div className="App">
             <header className="App-header">
-                <Local dispatch={dispatch} materials={materials} />
+                <Local materials={materials} />
                 <MaterialsList dispatch={dispatch} materials={materials} />
             </header>
         </div>

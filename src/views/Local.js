@@ -3,7 +3,7 @@ import "./Local.css";
 
 import { getUserMedia } from "../webrtc/getUserMedia";
 
-const Local = ({ dispatch, materials }) => {
+const Local = ({ materials }) => {
     const [stream, setStream] = useState();
     const videoElt = useRef();
 
