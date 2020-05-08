@@ -1,4 +1,4 @@
-import React, { useReducer, createContext } from "react";
+import React, { useReducer } from "react";
 import "./App.css";
 
 import Local from "./Local";
@@ -12,12 +12,15 @@ const App = () => {
 
     return (
         <div className="App">
-            <header className="App-header">
-                <MaterialsContext.Provider value={materials}>
-                    <Local />
-                    <MaterialsList dispatch={dispatch} />
-                </MaterialsContext.Provider>
-            </header>
+            <section className="App-container">
+                <div className="App-left-half"></div>
+                <div className="App-right-half">
+                    <MaterialsContext.Provider value={materials}>
+                        <Local />
+                        <MaterialsList dispatch={dispatch} />
+                    </MaterialsContext.Provider>
+                </div>
+            </section>
         </div>
     );
 };

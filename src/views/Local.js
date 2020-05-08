@@ -70,9 +70,9 @@ const Local = () => {
             <div>
                 <video ref={videoElt} id="local" className="Video-local" autoPlay playsInline></video>
             </div>
-            <h5 className="Video-name">{currentCameraTrack ? currentCameraTrack.label : "default"}</h5>
+            <h5 className="Video-name">{currentCameraTrack ? currentCameraTrack.label : "-"}</h5>
             <h6 className="Video-name">
-                <small>{currentMicrophoneTrack ? currentMicrophoneTrack.label : "default"}</small>
+                <small>{currentMicrophoneTrack ? currentMicrophoneTrack.label : "-"}</small>
             </h6>
             <hr />
             <div className="Video-id">{currentCameraId}</div>

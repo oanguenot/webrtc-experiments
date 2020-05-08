@@ -1,17 +1,22 @@
 .Video-local {
-    width: 360px;
-    height: 280px;
+    width: 240px;
+    height: 180px;
     margin: 0;
+    border: 1px solid #bbb;
 }
 
 .Video-id {
-    font-size: small;
-    font-weight: bold;
-    margin-top: 6px;
+    font-size: 0.5rem;
+    font-weight: lighter;
+    margin: 2px 0;
+    color: #eeeeee;
 }
 
 .Video-name {
-    margin: 6px;
+    margin: 2px 0;
+    font-size: 0.6rem;
+    font-weight: lighter;
+    color: #eeeeee;
 }
 
 .Video-area {

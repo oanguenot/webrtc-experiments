@@ -19,16 +19,37 @@ const MaterialItem = (props) => {
     };
 
     return (
-        <li>
-            <label className="Device-label">{props.device.label}</label>
-            <button onClick={select}>Select</button>
-            <label className="Device-active">{isSelected ? "ACTIVE" : ""}</label>
+        <li className="MaterialItem">
+            <div className="MaterialItem-left">
+                <label className={isSelected ? "MaterialItem-label-active" : "MaterialItem-label"}>
+                    {props.device.label}
+                </label>
+            </div>
+            <div className="MaterialItem-right">
+                {isSelected ? (
+                    <label className="MaterialItem-label">In use</label>
+                ) : (
+                    <button className="MaterialItem-button" onClick={select}>
+                        Select
+                    </button>
+                )}
+            </div>
         </li>
     );
 };
 
 const MaterialsList = ({ dispatch }) => {
     const materials = useContext(MaterialsContext);
+
+    useEffect(() => {
+        fetchDevices();
+    }, []);
+
+    useEffect(() => {
+        navigator.mediaDevices.ondevicechange = (device) => {
+            fetchDevices();
+        };
+    }, [materials]);
 
     const isSelectedMicrophone = (device) => {
         return materials.microphone && materials.microphone.id === device.id;
@@ -63,37 +84,37 @@ const MaterialsList = ({ dispatch }) => {
 
     return (
         <div>
-            <button className="" onClick={fetchDevices}>
-                Devices
-            </button>
-            <br />
-            <label>Microphone(s)</label>
-            <ul>
-                {filterByMicrophone(materials.list).map((device, index) => {
-                    return (
-                        <MaterialItem
-                            key={index}
-                            device={device}
-                            selected={isSelectedMicrophone(device)}
-                            onSelected={updateDeviceInUse}
-                        />
-                    );
-                })}
-            </ul>
-            <label>Camera</label>
-            <ul>
-                {filterByCamera(materials.list).map((device, index) => {
-                    return (
-                        <MaterialItem
-                            key={index}
-                            device={device}
-                            selected={isSelectedCamera(device)}
-                            onMicrophoneSelected={updateMicrophoneInUse}
-                            onSelected={updateDeviceInUse}
-                        />
-                    );
-                })}
-            </ul>
+            <div className="MaterialsList-items">
+                <label className="MaterialsList-items-title">Microphone</label>
+                <ul>
+                    {filterByMicrophone(materials.list).map((device, index) => {
+                        return (
+                            <MaterialItem
+                                key={index}
+                                device={device}
+                                selected={isSelectedMicrophone(device)}
+                                onSelected={updateDeviceInUse}
+                            />
+                        );
+                    })}
+                </ul>
+            </div>
+            <div className="MaterialsList-items">
+                <label className="MaterialsList-items-title">Camera</label>
+                <ul>
+                    {filterByCamera(materials.list).map((device, index) => {
+                        return (
+                            <MaterialItem
+                                key={index}
+                                device={device}
+                                selected={isSelectedCamera(device)}
+                                onMicrophoneSelected={updateMicrophoneInUse}
+                                onSelected={updateDeviceInUse}
+                            />
+                        );
+                    })}
+                </ul>
+            </div>
         </div>
     );
 };
