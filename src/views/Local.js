@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import "./Local.css";
 
+import { AUTHORIZATION_GRANTED } from "../actions/materialsActions";
 import MaterialsContext from "../contexts/materialsContext";
 
 import { getUserMedia } from "../webrtc/getUserMedia";
 
-const Local = () => {
+const Local = ({ dispatch }) => {
     const materials = useContext(MaterialsContext);
 
     const [stream, setStream] = useState();
@@ -16,6 +17,10 @@ const Local = () => {
             videoElt.current.srcObject = stream;
         }
     }, [stream]);
+
+    useEffect(() => {
+        requestMedia();
+    }, []);
 
     useEffect(() => {
         requestMedia();
@@ -50,6 +55,9 @@ const Local = () => {
         const newStream = await getUserMedia(constraints);
 
         setStream(newStream);
+        if (!materials.authorized) {
+            dispatch({ type: AUTHORIZATION_GRANTED, payload: true });
+        }
     };
 
     const currentCameraTrack = stream ? stream.getVideoTracks()[0] : null;

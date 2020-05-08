@@ -16,7 +16,7 @@ const App = () => {
                 <div className="App-left-half"></div>
                 <div className="App-right-half">
                     <MaterialsContext.Provider value={materials}>
-                        <Local />
+                        <Local dispatch={dispatch} />
                         <MaterialsList dispatch={dispatch} />
                     </MaterialsContext.Provider>
                 </div>

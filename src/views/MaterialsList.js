@@ -43,7 +43,7 @@ const MaterialsList = ({ dispatch }) => {
 
     useEffect(() => {
         fetchDevices();
-    }, []);
+    }, [materials.authorized]);
 
     useEffect(() => {
         navigator.mediaDevices.ondevicechange = (device) => {
