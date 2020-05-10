@@ -1,11 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import MaterialsContext from "../contexts/materialsContext";
-
-import { enumerate, getFirstMicrophone, getFirstCamera, filterByMicrophone, filterByCamera } from "../webrtc/Materials";
-
-import { SET_MICROPHONE, SET_CAMERA, SET_DEVICES } from "../actions/materialsActions";
-
 import "./MaterialsList.css";
+
+import {
+    enumerate,
+    filterByMicrophone,
+    filterByCamera,
+    diff,
+    selectMicrophoneToUse,
+    selectCameraToUse,
+} from "../webrtc/Materials";
+
+import { SET_MICROPHONE, SET_CAMERA, SET_DEVICES, SET_MICROPHONE_CAMERA } from "../actions/materialsActions";
 
 const MaterialItem = (props) => {
     const [isSelected, setActive] = useState(props.selected);
@@ -41,13 +47,24 @@ const MaterialItem = (props) => {
 const MaterialsList = ({ dispatch }) => {
     const materials = useContext(MaterialsContext);
 
+    const [deviceChanged, setChange] = useState(false);
+
+    useEffect(() => {
+        if (deviceChanged) {
+            setTimeout(() => {
+                fetchDevices();
+                setChange(false);
+            }, 2000);
+        }
+    }, [deviceChanged]);
+
     useEffect(() => {
         fetchDevices();
     }, [materials.authorized]);
 
     useEffect(() => {
-        navigator.mediaDevices.ondevicechange = (device) => {
-            fetchDevices();
+        navigator.mediaDevices.ondevicechange = () => {
+            setChange(true);
         };
     }, [materials]);
 
@@ -61,9 +78,22 @@ const MaterialsList = ({ dispatch }) => {
 
     const fetchDevices = async () => {
         const devices = await enumerate();
-        dispatch({ type: SET_DEVICES, payload: devices });
-        updateMicrophoneInUse(getFirstMicrophone(devices));
-        updateCameraInUse(getFirstCamera(devices));
+        const result = diff(materials.list, devices);
+
+        if (result.firstTime || (result.count !== 0 && !result.firstTime)) {
+            dispatch({ type: SET_DEVICES, payload: devices });
+
+            const microphone = selectMicrophoneToUse(result.count, materials.microphone, result.list, devices);
+            const camera = selectCameraToUse(result.count, materials.camera, result.list, devices);
+
+            if (microphone && camera) {
+                updateMicrophoneAndCameraInUse(microphone, camera);
+            } else if (microphone) {
+                updateMicrophoneInUse(microphone);
+            } else if (camera) {
+                updateCameraInUse(camera);
+            }
+        }
     };
 
     const updateDeviceInUse = (device) => {
@@ -80,6 +110,10 @@ const MaterialsList = ({ dispatch }) => {
 
     const updateCameraInUse = (camera) => {
         dispatch({ type: SET_CAMERA, payload: camera });
+    };
+
+    const updateMicrophoneAndCameraInUse = (microphone, camera) => {
+        dispatch({ type: SET_MICROPHONE_CAMERA, payload: { microphone, camera } });
     };
 
     return (

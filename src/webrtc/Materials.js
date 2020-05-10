@@ -19,6 +19,15 @@ export const filterByCamera = (listOfMaterials) => {
     });
 };
 
+export const filterBySpeaker = (listOfMaterials) => {
+    if (!listOfMaterials) {
+        return [];
+    }
+    return listOfMaterials.filter((material) => {
+        return material.isAMicrophone && material.output;
+    });
+};
+
 export const hasAMicrophone = (listOfMaterials) => {
     return filterByMicrophone(listOfMaterials).length > 0;
 };
@@ -53,4 +62,83 @@ export const getFirstCamera = (listOfMaterials) => {
     }
 
     return filterByCamera(listOfMaterials)[0];
+};
+
+export const diff = (withCurrent, devices) => {
+    let diff = {
+        count: 0,
+        list: [],
+        firstTime: withCurrent.length === 0,
+    };
+
+    const current = withCurrent.filter((elt) => {
+        return elt.id.length > 0 && elt.label.length > 0;
+    });
+
+    if (devices.length === current.length) {
+        return diff;
+    }
+
+    if (devices.length > current.length) {
+        let newDevices = devices.filter((device) => {
+            return !current.some((elt) => elt.id === device.id);
+        });
+
+        return {
+            count: newDevices.length,
+            list: newDevices,
+            firstTime: current.length === 0,
+        };
+    } else {
+        // devices removed
+        let removedDevices = current.filter((device) => {
+            return !devices.some((elt) => {
+                return elt.id === device.id;
+            });
+        });
+
+        return {
+            count: 0 - removedDevices.length,
+            list: removedDevices,
+            firstTime: current.length === 0,
+        };
+    }
+};
+
+export const selectMicrophoneToUse = (count, current, update, list) => {
+    if (count > 0) {
+        const newMicrophone = getFirstMicrophone(update);
+        if (newMicrophone && (!current || newMicrophone.id !== current.id)) {
+            return newMicrophone;
+        }
+    } else if (count < 0) {
+        if (update.some((elt) => elt.id === current.id)) {
+            const newMicrophone = getFirstMicrophone(list);
+            return newMicrophone;
+        }
+    } else {
+        if (!current) {
+            const newMicrophone = getFirstMicrophone(list);
+            return newMicrophone;
+        }
+    }
+};
+
+export const selectCameraToUse = (count, current, update, list) => {
+    if (count > 0) {
+        const newCamera = getFirstCamera(update);
+        if (newCamera && (!current || newCamera.id !== current.id)) {
+            return newCamera;
+        }
+    } else if (count < 0) {
+        if (update.some((elt) => elt.id === current.id)) {
+            const newCamera = getFirstCamera(list);
+            return newCamera;
+        }
+    } else {
+        if (!current) {
+            const newCamera = getFirstCamera(list);
+            return newCamera;
+        }
+    }
 };

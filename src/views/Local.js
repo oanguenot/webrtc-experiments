@@ -4,7 +4,7 @@ import "./Local.css";
 import { AUTHORIZATION_GRANTED } from "../actions/materialsActions";
 import MaterialsContext from "../contexts/materialsContext";
 
-import { getUserMedia } from "../webrtc/getUserMedia";
+import { getUserMedia, getConstraints } from "../webrtc/getUserMedia";
 
 const Local = ({ dispatch }) => {
     const materials = useContext(MaterialsContext);
@@ -14,7 +14,7 @@ const Local = ({ dispatch }) => {
 
     useEffect(() => {
         if (stream) {
-            videoElt.current.srcObject = stream;
+            videoElt.current.srcObject = stream.mediaStream;
         }
     }, [stream]);
 
@@ -26,32 +26,17 @@ const Local = ({ dispatch }) => {
         requestMedia();
     }, [materials.camera, materials.microphone]);
 
-    const getConstraints = () => {
-        const audioConstraints =
-            materials.microphone && materials.microphone.id ? { deviceId: { exact: materials.microphone.id } } : true;
-        const videoConstraints =
-            materials.camera && materials.camera.id
-                ? {
-                      deviceId: { exact: materials.camera.id },
-                      width: { exact: 640 },
-                      height: { exact: 480 },
-                  }
-                : true;
-
-        return {
-            audio: audioConstraints,
-            video: videoConstraints,
-        };
-    };
-
     const requestMedia = async () => {
+        let microphoneInUse = materials.microphone,
+            cameraInUse = materials.camera;
+
+        const constraints = getConstraints(microphoneInUse, cameraInUse);
+
         if (stream) {
-            stream.getTracks().forEach((track) => {
-                track.stop();
-            });
+            stream.stopAudioIfNotFrom(microphoneInUse);
+            stream.stopVideoIfNotFrom(cameraInUse);
         }
 
-        const constraints = getConstraints();
         const newStream = await getUserMedia(constraints);
 
         setStream(newStream);
@@ -60,31 +45,23 @@ const Local = ({ dispatch }) => {
         }
     };
 
-    const currentCameraTrack = stream ? stream.getVideoTracks()[0] : null;
-    const currentMicrophoneTrack = stream ? stream.getAudioTracks()[0] : null;
-
-    var currentCameraId = "-";
-    if (currentCameraTrack) {
-        currentCameraId = currentCameraTrack.getSettings().deviceId;
-    }
-
-    var currentMicrophoneId = "-";
-    if (currentMicrophoneTrack) {
-        currentMicrophoneId = currentMicrophoneTrack.getSettings().deviceId;
-    }
+    let microphoneId = stream ? stream.idOfFirstMicrophone : "-",
+        microphoneLabel = stream ? stream.labelOfFirstMicrophone : "-",
+        cameraId = stream ? stream.idOfFirstCamera : "-",
+        cameraLabel = stream ? stream.labelOfFirstCamera : "-";
 
     return (
         <div className="Video-area">
             <div>
                 <video ref={videoElt} id="local" className="Video-local" autoPlay playsInline></video>
             </div>
-            <h5 className="Video-name">{currentCameraTrack ? currentCameraTrack.label : "-"}</h5>
+            <h5 className="Video-name">{cameraLabel}</h5>
             <h6 className="Video-name">
-                <small>{currentMicrophoneTrack ? currentMicrophoneTrack.label : "-"}</small>
+                <small>{microphoneLabel}</small>
             </h6>
             <hr />
-            <div className="Video-id">{currentCameraId}</div>
-            <div className="Video-id">{currentMicrophoneId}</div>
+            <div className="Video-id">{cameraId}</div>
+            <div className="Video-id">{microphoneId}</div>
         </div>
     );
 };

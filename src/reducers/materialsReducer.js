@@ -1,4 +1,10 @@
-import { SET_MICROPHONE, SET_CAMERA, SET_DEVICES, AUTHORIZATION_GRANTED } from "../actions/materialsActions";
+import {
+    SET_MICROPHONE,
+    SET_CAMERA,
+    SET_DEVICES,
+    SET_MICROPHONE_CAMERA,
+    AUTHORIZATION_GRANTED,
+} from "../actions/materialsActions";
 
 const initialMaterialsState = {
     list: [],
@@ -15,6 +21,8 @@ const materialsReducer = (state = initialMaterialsState, action) => {
             return { ...state, microphone: action.payload };
         case SET_CAMERA:
             return { ...state, camera: action.payload };
+        case SET_MICROPHONE_CAMERA:
+            return { ...state, microphone: action.payload.microphone, camera: action.payload.camera };
         case AUTHORIZATION_GRANTED:
             return { ...state, authorized: action.payload };
         default:
