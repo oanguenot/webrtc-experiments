@@ -39,7 +39,7 @@ Each browser has its own strategy. So, it could be complicated to provide the sa
 
 If you use a WebRTC application, you will encounter the different cases depending on the browser:
 
--   On **Firefox**, when asking for the authorization, you can select the device to use directly. You could be prompted several times if you have several devices. You are prompted for each different couples "microphone - camera" you choose.
+-   On **Firefox**, when asking for the authorization, you can select the device to use directly. You are prompted each time you select differents devices.
 
 -   On **Chrome** (and Edge), you are prompted only the first time you visit the page. The authorization is global for the page and not linked to the devices. By default, Chrome fosters external devices added and plugged.
 
