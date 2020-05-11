@@ -31,7 +31,7 @@ export const getUserMedia = () => {
 };
 ```
 
-_Recommendation_: The API `navigator.mediaDevices.getUserMedia` is always the first API you need to call when using WebRTC. Without using that API first, you will not be able to display correctly the complete list of your devices and for sure share your voice and video with your recipient. Constraints that can be used for requesting the authorization can be more detailled if you want to offer a better integration. These possibilities and the way to handle the errors are described in a dedicated chapter.
+> The API `navigator.mediaDevices.getUserMedia` is always the first API you need to call when using WebRTC. Without using that API first, you will not be able to display correctly the complete list of your devices and for sure share your voice and video with your recipient. Constraints that can be used for requesting the authorization can be more detailled if you want to offer a better integration. These possibilities and the way to handle the errors are described in a dedicated chapter.
 
 ## Browser's strategy for the authorization's request to access the devices
 
@@ -45,7 +45,7 @@ If you use a WebRTC application, you will encounter the different cases dependin
 
 -   On **Safari**, you are prompted each time you visit the page. It seems that in contrary to Chrome, Safari fosters internal devices even if an external camera is plugged for example.
 
-_Recommendation_: There are two consequences. First you need to test on each browser to adapt your behavior and secondly, on Chrome, you need to test the first time your application starts which can be simulated by closing and restarting your browser and then after refreshing your application because this is two differents use cases.
+> There are two consequences. First you need to test on each browser to adapt your behavior and secondly, on Chrome, you need to test the first time your application starts which can be simulated by closing and restarting your browser and then after refreshing your application because this is two differents use cases.
 
 ## Enumerating your devices
 
@@ -100,7 +100,7 @@ Note: Tests done on **Microsoft Edge** (M81 / Mac) shown the same results as for
 
 Now, your application have access and is able to use these devices in a call.
 
-_Recommendation_: As for mobile applications, it is a good practice for asking permissions when the application starts because this will help you to detect potential issue and inform the user before he tries to make a call. But depending on the browser, this step can have a visual impact so the user could ask why ? So, the best I think is if you ask, to display the devices found and _in use_ or equivalent somewhere in your user interface with a special mark in case of issues.
+> As for mobile applications, it is a good practice for asking permissions when the application starts because this will help you to detect potential issue and inform the user before he tries to make a call. But depending on the browser, this step can have a visual impact so the user could ask why ? So, the best I think is if you ask, to display the devices found and _in use_ or equivalent somewhere in your user interface with a special mark in case of issues.
 
 ## MediaDeviceInfo content
 

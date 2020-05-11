@@ -2,11 +2,11 @@
 
 I seen a lot of applications in my life. I'm not a great software architect but I think I succeeded to put the minimum viable architecture in the applications I developed so I tried to share some advices here to ease your WebRTC integration.
 
-## Sample application
+## Integrate by step
 
 Attached to that documentation is a sample application that illustrates some of these architectures advices. Depending on your existing codebase, it could be more or less complicated to integrate. But, putting in place some of them will help your keeping that part under control and avoid to propagate this new code everywhere in your existing codebase.
 
-_Recommendation_: As for every new part of code added, spend some time thinking on how you will introduce it. If you need to rework on some parts, do it before adding the WebRTC stuff, because once added, it will take more time to rework as usual...
+> As for every new part of code added, spend some time thinking on how you will introduce it. If you need to rework on some parts, do it before adding the WebRTC stuff, because once added, it will take more time to rework as usual...
 
 ## Separation of concerns
 
@@ -18,7 +18,7 @@ As for every applications, the design principle of the [**separation of concerns
 
 By separing your WebRTC code in separate modules, you will keep closed that technology and avoid having to patch every views each time you enhance your application or each time there are breaking changes in the WebRTC implementation.
 
-_Recommendation_: Keep all the methods that deal with the WebRTC API and events in a dedicated module. Propagate your own events or state models in your views to not rely on WebRTC. This will simplify your development by putting in place a strong "API" between your views and your modules based on your business part and not based on WebRTC.
+> Keep all the methods that deal with the WebRTC API and events in a dedicated module. Propagate your own events or state models in your views to not rely on WebRTC. This will simplify your development by putting in place a strong "API" between your views and your modules based on your business part and not based on WebRTC.
 
 ## Encapsulate and enrich WebRTC
 
@@ -43,7 +43,7 @@ const getVideoTrack = (stream) => {
 
 Having some **high level** will help you simplifying your views codebase. All the view needs to know is that for displaying a video, the view should access the video track. that all. How to access the video track is not the problem of the view, this is the problem of the WebRTC module because the implementation is deeply linked to the WebRTC and perhaps not the same on all browsers.
 
-_Recommendation_: The advice I try to keep in mind is to say "My views have no idea of what WebRTC is and should call all the WebRTC stuff from outside". So, put away from the view all WebRTC direct call to APIs and all the events subscriptions.
+> The advice I try to keep in mind is to say "My views have no idea of what WebRTC is and should call all the WebRTC stuff from outside". So, put away from the view all WebRTC direct call to APIs and all the events subscriptions.
 
 ## WebRTC-Adapter
 
@@ -55,13 +55,13 @@ Now, I have a different feeling. If you want to stick with the latest new WebRTC
 
 But if you are using only common WebRTC API and make P2P calls, you can directly write your code without using that library. It will work.
 
-_Recommendation_: Start without the library to really see how it works and confront yourself to the current **WebRTC "state of the art"** and so common complicated things and issues. If you see that the library helps you to overcome the difficulty, use it. Elsewhere, don't use it.
+> Start without the library to really see how it works and confront yourself to the current **WebRTC "state of the art"** and so common complicated things and issues. If you see that the library helps you to overcome the difficulty, use it. Elsewhere, don't use it.
 
 ## Open-source WebRTC libraries
 
 Free or open-source WebRTC libraries exist and can be integrated in your application. But be careful because a majority of them have the **signaling** part and the **media** part deeply linked together and so you will need to integrate the whole (application side + server side). If you don't already have a server part, it could help you developing faster. In the other case, you will have to integrate that part with your existing server.
 
-_Recommentation_: As for other open-source libraries, be sure that the library is still maintained and have a community of users. Some libraries were developed some years ago when the need of **helpers** were huge, but now, you need less and less libraries to be able to use WebRTC if you stay on the common case.
+> As for other open-source libraries, be sure that the library is still maintained and have a community of users. Some libraries were developed some years ago when the need of **helpers** were huge, but now, you need less and less libraries to be able to use WebRTC if you stay on the common case.
 
 ## Paid WebRTC libraries
 
@@ -69,13 +69,19 @@ Additionnaly to the open-source libraries, you can find paid solutiond. In a maj
 
 When using these libraries of SDK, you will often paid for the traffic that goes through the infrastructure in place.
 
-_Recommendation_: Not easy to give an advice here. But, if you have some IT skills, it is not complicated to deploy a [**Coturn**](https://github.com/coturn/coturn) server. If you don't want to "put the hands in the engine" and want to rely on a "well-known" partner, this solution let you focus on your application and not on the infrastructure.
+> Not easy to give an advice here. But, if you have some IT skills, it is not complicated to deploy a [**Coturn**](https://github.com/coturn/coturn) server. If you don't want to "put the hands in the engine" and want to rely on a "well-known" partner, this solution let you focus on your application and not on the infrastructure.
+
+## Try everywhere
+
+You can develop your WebRTC application in any browsers of your choice. This is not mandatory to stick to a specific browser. But be careful, to check the behavior on the other browsers. It is like adding CSS to your site. You need to check how it looks like on all browsers to be sure of the result. Do the same with WebRTC to avoid big surprise.
+
+> Each time you add a feature or use a WebRTC API, do that check. Sometimes it will be better for one browser and less for an other. Frequent checks will help you at this end to progress in the right direction. So install all the major browsers in your computer to be able to do these tests.
 
 ## Early versions
 
 Having the possibility to test your WebRTC application at least on a Beta version of the browser is something that helps you being more confident. Don't forget that browsers update them self each month or each two month and so the environment of your application changes at the same pace.
 
-_Recommendation_: If you stick with the latest WebRTC API, you need to install at least a Beta version of each browser. For Chrome, you can install the [Chrome for developers](https://www.google.com/intl/en/chrome/dev/) version that is updated every weeks and that contain the latest development already merged, so one or release in advance. The same is provided by Firefox with the [Developer Edition](https://www.mozilla.org/en-US/firefox/channel/desktop/). For Safari, you can download the [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/) to have access to an early version.
+> If you stick with the latest WebRTC API, you need to install at least a Beta version of each browser. For Chrome, you can install the [Chrome for developers](https://www.google.com/intl/en/chrome/dev/) version that is updated every weeks and that contain the latest development already merged, so one or release in advance. The same is provided by Firefox with the [Developer Edition](https://www.mozilla.org/en-US/firefox/channel/desktop/). For Safari, you can download the [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/) to have access to an early version.
 
 ## Debugging
 
@@ -89,7 +95,7 @@ Additional logging methods can be put in place with Chrome on different platform
 
 If you're more than a Web developer, you can use a network packet analysis tool such as **Wireshark**. And if you have deployed your own TURN server, such as **Coturn**, you can check the associated logs if there is trouble when establishing the session.
 
-_Recommendation_: You need to be able to quickly identify where is located the issue. Often, you need to have logs from the issuer and from the recipient to have the complete view of what happened. Using _special_ tools such as **WebRTC internals** give you _superpowers_ that can save your day!
+> You need to be able to quickly identify where is located the issue. Often, you need to have logs from the issuer and from the recipient to have the complete view of what happened. Using _special_ tools such as **WebRTC internals** give you _superpowers_ that can save your day!
 
 ---
 

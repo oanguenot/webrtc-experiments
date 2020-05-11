@@ -76,7 +76,7 @@ The second one is by using the method `enumerateDevices()` as described in the p
 
 The last steps is to let the user selects the devices he want and apply his choise. For that you have at least 2 strategies.
 
-_Recommendation_: As described here, the best is to display to different lists: one for the microphone and one for the video. The reason is that most of the cases, there is no link between them and the user needs to pick one from each list. As soon as you plug or connect an external device you will, your lists will augment not symmetrically. Adding a new headset will only add a new microphone to the list. Plugging a camera can add a new camera as well as a new microphone.
+> As described here, the best is to display to different lists: one for the microphone and one for the video. The reason is that most of the cases, there is no link between them and the user needs to pick one from each list. As soon as you plug or connect an external device you will, your lists will augment not symmetrically. Adding a new headset will only add a new microphone to the list. Plugging a camera can add a new camera as well as a new microphone.
 
 ### Mixing audio and video devices
 
@@ -104,7 +104,7 @@ This strategy is complicated for several reasons:
 
 -   `groupId` is not yet implemented in Safari (13.1)
 
-_Recommendation_: For that case, the best is when the user selects a microphone to check if a camera contains the same `groupId`. If yes, to select the associated camera automatically. If you want to force that strategy, do the same when selecting the camera. If you want some granularities, let him select a different camera.
+> For that case, the best is when the user selects a microphone to check if a camera contains the same `groupId`. If yes, to select the associated camera automatically. If you want to force that strategy, do the same when selecting the camera. If you want some granularities, let him select a different camera.
 
 ### What are the default devices ?
 
@@ -112,7 +112,7 @@ Seems to be an easy question... But I didn't find any answer at that question. I
 
 From my perspective, "default" means the internals or "built-in" devices. I would like to identify the internals from the plugged-in devices. But this is not how it was implemented. You have a list of devices without any possibilities to differentiate internals from plugged-in devices. Consequently, the application can't help the user for that. This is the responsability of the user to identify correctly the devices he wants to use based on the label displayed. Hope this is enough!
 
-_Recommendation_: Be careful when trying to _deduce_ the default devices from the label. Labels are not consistent between browsers. You could have _By default Internal Microphone (built-in)_ on Chrome and _Internal Microphone_ on Firefox and Safari.
+> Be careful when trying to _deduce_ the default devices from the label. Labels are not consistent between browsers. You could have _By default Internal Microphone (built-in)_ on Chrome and _Internal Microphone_ on Firefox and Safari.
 
 ## Detecting new devices
 

@@ -20,7 +20,7 @@ The good consequence is that you can do it as you want. Some are using a server 
 
 The bad consequence is that each developer has that same problem to solve. You need a server! On development, this can be done very easily by developing a **Node.JS** application that will relay information coming from one peer to the other. But on production, you will need a server (additional one ?) you can rely on. If you already have a server and already have chat sessions, plugging that signaling part to the existant one should be quick easy.
 
-_Recommmendation_: Reuse your existing server only if it makes sense (if you already exchange information between users in live). If not, it is better to add a new module (micro-service) that will deal with the signaling part. In both cases, take the time to define your protocol or to base your solution on an existing one. Later, it will let you add more features easily.
+> Reuse your existing server only if it makes sense (if you already exchange information between users in live). If not, it is better to add a new module (micro-service) that will deal with the signaling part. In both cases, take the time to define your protocol or to base your solution on an existing one. Later, it will let you add more features easily.
 
 ## HTTPS or die
 
@@ -32,7 +32,7 @@ For testing from your desktop, you can still use a wild certificate (not trusted
 
 The solution I put in place is to use `ngrok`. Using [**ngrok**](https://ngrok.com/), you get two things: a secure URL to your local server and a public address which lets you test your local application on your mobile.
 
-_Recommendation_: Take the time to have the environment that let you develop and integrate on different devices very easily. Do not wait to have issues coming from your customer to put in place the right environment to test.
+> Take the time to have the environment that let you develop and integrate on different devices very easily. Do not wait to have issues coming from your customer to put in place the right environment to test.
 
 ## Compatibility on mobile
 
@@ -45,7 +45,7 @@ For providing the best experience on mobile, the best is that your application s
 | **Apple**<br>Ipad, Iphone    | **Safari**              | Chrome, Firefox<br>[Bug](https://bugs.chromium.org/p/chromium/issues/detail?id=752458) |
 | **Android**<br>Phone, Tablet | **Chrome**, **Firefox** | Some specific mobile vendor browsers                                                   |
 
-_Recommendation_: Don't forget to check the navigator and inform the user when detected a not compliant browser.
+> Don't forget to check the navigator and inform the user when detected a not compliant browser.
 
 ## Streams and Tracks
 
