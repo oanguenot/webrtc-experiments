@@ -96,7 +96,3 @@ Additional logging methods can be put in place with Chrome on different platform
 If you're more than a Web developer, you can use a network packet analysis tool such as **Wireshark**. And if you have deployed your own TURN server, such as **Coturn**, you can check the associated logs if there is trouble when establishing the session.
 
 > You need to be able to quickly identify where is located the issue. Often, you need to have logs from the issuer and from the recipient to have the complete view of what happened. Using _special_ tools such as **WebRTC internals** give you _superpowers_ that can save your day!
-
----
-
-Last edition May, 05th 2020

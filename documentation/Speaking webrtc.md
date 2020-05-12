@@ -58,7 +58,3 @@ A MediaStream is able to carry both audio and video using **MediaStreamTracks**.
 For example, if you request the access to your microphone and camera, you receive a MediaStream with 2 MediaStreamTracks, one corresponding to the microphone used and the second corresponding to the camera captured.
 
 Once you have an input stream, you can "plug" it to one or several **output** sources which can be a &lt;video&gt; element, a &lt;audio&gt; element or a WebRTC component that transmits the video to your recipient (aka: a Peer Connection) .
-
----
-
-Last edition May, 01th 2020

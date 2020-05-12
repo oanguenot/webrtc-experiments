@@ -123,7 +123,3 @@ As for browsers at the origin for JavaScript and HTML, WebRTC developers want AP
 -   [Firefox release notes](https://wiki.mozilla.org/Media/WebRTC/ReleaseNotes)
 -   [WebKit release notes](https://webkit.org/blog/)
 -   [Safari release notes](https://developer.apple.com/safari/technology-preview/release-notes/)
-
----
-
-Last edition May, 01th 2020

@@ -215,7 +215,3 @@ navigator.mediaDevices.ondevicechange = () => {
 ```
 
 Using that example, you enumerate the devices only once and after a short period to be sure that the devices have been all identified correctly.
-
----
-
-Last edition May, 10th 2020

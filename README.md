@@ -16,6 +16,7 @@ All the documentation is divided into different chapters:
 -   [Chapter 3: Speaking WebRTC](./documentation/Speaking%20webrtc.md)
 -   [Chapter 4: Access to the devices](./documentation/Access%20to%20devices.md)
 -   [Chapter 5: Selecting a camera and a microphone](./documentation/Selecting%20devices.md)
+-   [Chapter 6: Understanding constraints](./documentation/Understanding%20constraints.md)
 -   To complete...
 
 ## Application

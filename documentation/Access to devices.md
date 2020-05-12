@@ -6,7 +6,7 @@ This chapter describes the API to use for authorizing the browser to access your
 
 ## Introduction
 
-Accessing the devices (exemple: microphone and camera to use) can be done by using APIs behind `navigator.mediaDevices`. But to be allowed to do that correctly, the application should prompt the user for the authorization to access the microphone and the camera to use. This is for **security reason** to avoid any malicious applications to listen or to see what happens in your room from your computer.
+Accessing the devices (example: microphone and camera to use) can be done by using APIs behind `navigator.mediaDevices`. But to be allowed to do that correctly, the application should prompt the user for the authorization to access the microphone and the camera to use. This is for **security reason** to avoid any malicious applications to listen or to see what happens in your room from your computer.
 
 ## Get the authorization
 
@@ -153,6 +153,8 @@ The important things to notice are that:
 
 So, the only way to have access is to ask for the authorization before.
 
----
+## Accessing devices takes time
 
-Last edition April, 29th 2020
+Accessing your camera and microphone can take up to 2 or 3 seconds depending on your devices. This result only takes into account the time between the user accepts the authorization and the stream is returned (and so displayed). This is the minimal time the device takes to initialize.
+
+> During that period, you can display an animation or a spinner to show your users that the audio and or video will come soon and that nothing is wrong at this time.
