@@ -6,12 +6,21 @@ import {
     enumerate,
     filterByMicrophone,
     filterByCamera,
+    filterBySpeaker,
     diff,
     selectMicrophoneToUse,
     selectCameraToUse,
+    selectSpeakerToUse,
 } from "../webrtc/Materials";
 
-import { SET_MICROPHONE, SET_CAMERA, SET_DEVICES, SET_MICROPHONE_CAMERA } from "../actions/materialsActions";
+import {
+    SET_MICROPHONE,
+    SET_CAMERA,
+    SET_DEVICES,
+    SET_SPEAKER,
+    SET_MICROPHONE_CAMERA,
+    SET_MICROPHONE_CAMERA_SPEAKER,
+} from "../actions/materialsActions";
 
 const MaterialItem = (props) => {
     const [isSelected, setActive] = useState(props.selected);
@@ -76,6 +85,10 @@ const MaterialsList = ({ dispatch }) => {
         return materials.camera && materials.camera.id === device.id;
     };
 
+    const isSelectedSpeaker = (device) => {
+        return materials.speaker && materials.speaker.id === device.id;
+    };
+
     const fetchDevices = async () => {
         const devices = await enumerate();
         const result = diff(materials.list, devices);
@@ -85,13 +98,18 @@ const MaterialsList = ({ dispatch }) => {
 
             const microphone = selectMicrophoneToUse(result.count, materials.microphone, result.list, devices);
             const camera = selectCameraToUse(result.count, materials.camera, result.list, devices);
+            const speaker = selectSpeakerToUse(result.count, materials.speaker, result.list, devices);
 
-            if (microphone && camera) {
+            if (microphone && camera && speaker) {
+                updateAll(microphone, camera, speaker);
+            } else if (microphone && camera) {
                 updateMicrophoneAndCameraInUse(microphone, camera);
             } else if (microphone) {
                 updateMicrophoneInUse(microphone);
             } else if (camera) {
                 updateCameraInUse(camera);
+            } else if (speaker) {
+                updateSpeakerToUse(speaker);
             }
         }
     };
@@ -99,8 +117,10 @@ const MaterialsList = ({ dispatch }) => {
     const updateDeviceInUse = (device) => {
         if (device.isAMicrophone) {
             updateMicrophoneInUse(device);
-        } else {
+        } else if (device.isACamera) {
             updateCameraInUse(device);
+        } else if (device.isASpeaker) {
+            updateSpeakerToUse(device);
         }
     };
 
@@ -112,8 +132,16 @@ const MaterialsList = ({ dispatch }) => {
         dispatch({ type: SET_CAMERA, payload: camera });
     };
 
+    const updateSpeakerToUse = (speaker) => {
+        dispatch({ type: SET_SPEAKER, payload: speaker });
+    };
+
     const updateMicrophoneAndCameraInUse = (microphone, camera) => {
         dispatch({ type: SET_MICROPHONE_CAMERA, payload: { microphone, camera } });
+    };
+
+    const updateAll = (microphone, camera, speaker) => {
+        dispatch({ type: SET_MICROPHONE_CAMERA_SPEAKER, payload: { microphone, camera, speaker } });
     };
 
     return (
@@ -142,7 +170,21 @@ const MaterialsList = ({ dispatch }) => {
                                 key={index}
                                 device={device}
                                 selected={isSelectedCamera(device)}
-                                onMicrophoneSelected={updateMicrophoneInUse}
+                                onSelected={updateDeviceInUse}
+                            />
+                        );
+                    })}
+                </ul>
+            </div>
+            <div className="MaterialsList-items">
+                <label className="MaterialsList-items-title">Speakers</label>
+                <ul>
+                    {filterBySpeaker(materials.list).map((device, index) => {
+                        return (
+                            <MaterialItem
+                                key={index}
+                                device={device}
+                                selected={isSelectedSpeaker(device)}
                                 onSelected={updateDeviceInUse}
                             />
                         );

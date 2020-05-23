@@ -26,6 +26,19 @@ const Local = ({ dispatch }) => {
         requestMedia();
     }, [materials.camera, materials.microphone]);
 
+    useEffect(() => {
+        const updateSpeaker = async (sinkId) => {
+            try {
+                await videoElt.current.setSinkId(sinkId);
+            } catch (err) {
+                console.log("Can select speaker", err);
+            }
+        };
+        if (materials.speaker) {
+            updateSpeaker(materials.speaker.id);
+        }
+    }, [materials.speaker]);
+
     const requestMedia = async () => {
         let microphoneInUse = materials.microphone,
             cameraInUse = materials.camera;
@@ -52,9 +65,7 @@ const Local = ({ dispatch }) => {
 
     return (
         <div className="Video-area">
-            <div>
-                <video ref={videoElt} id="local" className="Video-local" autoPlay playsInline></video>
-            </div>
+            <video ref={videoElt} id="local" className="Video-local" autoPlay playsInline></video>
             <h5 className="Video-name">{cameraLabel}</h5>
             <h6 className="Video-name">
                 <small>{microphoneLabel}</small>

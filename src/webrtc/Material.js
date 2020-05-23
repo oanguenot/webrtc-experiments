@@ -40,7 +40,15 @@ class Material {
             return false;
         }
 
-        return this._device.kind.includes("audio");
+        return this._device.kind.includes("audio") && this._device.kind.includes("input");
+    }
+
+    get isASpeaker() {
+        if (!this._device) {
+            return false;
+        }
+
+        return this._device.kind.includes("audio") && this._device.kind.includes("output");
     }
 
     get isACamera() {

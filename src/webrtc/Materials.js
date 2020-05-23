@@ -6,7 +6,7 @@ export const filterByMicrophone = (listOfMaterials) => {
     }
 
     return listOfMaterials.filter((material) => {
-        return material.isAMicrophone && material.input;
+        return material.isAMicrophone;
     });
 };
 
@@ -24,7 +24,7 @@ export const filterBySpeaker = (listOfMaterials) => {
         return [];
     }
     return listOfMaterials.filter((material) => {
-        return material.isAMicrophone && material.output;
+        return material.isASpeaker;
     });
 };
 
@@ -36,16 +36,24 @@ export const hasACamera = (listOfMaterials) => {
     return filterByCamera(listOfMaterials).length > 0;
 };
 
+export const hasASpeaker = (listOfMaterials) => {
+    return filterBySpeaker(listOfMaterials).length > 0;
+};
+
 export const enumerate = async () => {
     var materials = [];
 
-    await navigator.mediaDevices.enumerateDevices().then((devicesFound) => {
-        materials = devicesFound.map((device) => {
-            return new Material(device);
+    try {
+        await navigator.mediaDevices.enumerateDevices().then((devicesFound) => {
+            materials = devicesFound.map((device) => {
+                return new Material(device);
+            });
         });
-    });
 
-    return materials;
+        return materials;
+    } catch (err) {
+        console.log("[enumerate] error", err);
+    }
 };
 
 export const getFirstMicrophone = (listOfMaterials) => {
@@ -62,6 +70,14 @@ export const getFirstCamera = (listOfMaterials) => {
     }
 
     return filterByCamera(listOfMaterials)[0];
+};
+
+export const getFirstSpeaker = (listOfMaterials) => {
+    if (!hasASpeaker(listOfMaterials)) {
+        return null;
+    }
+
+    return filterBySpeaker(listOfMaterials)[0];
 };
 
 export const diff = (withCurrent, devices) => {
@@ -139,6 +155,25 @@ export const selectCameraToUse = (count, current, update, list) => {
         if (!current) {
             const newCamera = getFirstCamera(list);
             return newCamera;
+        }
+    }
+};
+
+export const selectSpeakerToUse = (count, current, update, list) => {
+    if (count > 0) {
+        const newSpeaker = getFirstSpeaker(update);
+        if (newSpeaker && (!current || newSpeaker.id !== current.id)) {
+            return newSpeaker;
+        }
+    } else if (count < 0) {
+        if (update.some((elt) => elt.id === current.id)) {
+            const newSpeaker = getFirstSpeaker(list);
+            return newSpeaker;
+        }
+    } else {
+        if (!current) {
+            const newSpeaker = getFirstSpeaker(list);
+            return newSpeaker;
         }
     }
 };
